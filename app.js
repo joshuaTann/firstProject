@@ -1,10 +1,3 @@
-//scoring
-//simple set interval command to increase the score by 1 every second
-// let num = 0
-// const score = setInterval(() => {
-// document.getElementById("score").innerText = num
-// num++;
-// }, 1000);
 
 //making the obstacles
 let generateobstacle = setInterval(() => {
@@ -13,13 +6,13 @@ let generateobstacle = setInterval(() => {
 //give the div a class of "obstacles"
     obstacle.classList.add("obstacles");
 //getting the left value to randomly generate the objects across the top of the screen
-    let obstacleleft = parseInt(window.getComputedStyle(obstacle).getPropertyValue("left"));
+    // let obstacleleft = parseInt(window.getComputedStyle(obstacle).getPropertyValue("left"));
     obstacle.style.left = Math.floor(Math.random() * 600) + "px";
 
     display.appendChild(obstacle);
 
 //object spawn at an interval of one second
-}, 800);
+}, 1000);
 
 //moving the obstacles
 let moveobstacle = setInterval(() => {
@@ -33,7 +26,7 @@ let moveobstacle = setInterval(() => {
 //take the current "top" value of the object
             let obstacletop = parseInt(window.getComputedStyle(obstacle).getPropertyValue("top"));
 //increase it by 5px every 25 milliseconds          
-            obstacle.style.top = obstacletop + 1 + "px";
+            obstacle.style.top = obstacletop + 2 + "px";
             //if the obstacle touches the bottom then end the game
             if(obstacletop > 650) {
                 alert("Game Over. Refresh the page to try again!")
@@ -43,7 +36,7 @@ let moveobstacle = setInterval(() => {
             }
         }  
     }
-}, 25);
+}, 20);
 
 //making the car move
 let car = document.getElementById("car")
@@ -53,14 +46,14 @@ let display = document.getElementById("display")
 window.addEventListener("keydown", (e) => {
     //getting left value of the car so we can move it
     let left = parseInt(window.getComputedStyle(car).getPropertyValue("left"))
-    if(e.key == "a" && left > 10) {
+    if(e.key === "a" && left > 10) {
         car.style.left = left - 30 + "px";
-    } else if(e.key == "d" && left <= 610) {
+    } else if(e.key === "d" && left <= 610) {
         car.style.left = left + 30 + "px";
     }
 
 //bullets
-if (e.key == "w") {
+if (e.key === "w") {
     let bullet = document.createElement("div");
     bullet.classList.add("bullets");
     display.appendChild(bullet);
