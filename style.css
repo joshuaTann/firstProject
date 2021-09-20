@@ -10,10 +10,15 @@ h1 {
     text-align: center;
 }
 
+#thetop {
+    height: 30px;
+    background-color: yellow;
+}
+
 #display {
     position: relative;
     background-color: gray;
-    height: 770px;
+    height: 680px;
     width: 670px;
     margin: 0 auto;
 }
@@ -21,18 +26,31 @@ h1 {
 .obstacles {
     position: absolute;
     height: 50px;
-    width: 150px;
+    width: 70px;
     background-color: orange;
+    border-radius: 10px;
     top: 0;
     left: 0;
 }
+
+.bullets {
+    position: absolute;
+    bottom: 150px;
+    left: 51%;
+    width: 2px;
+    height: 20px;
+    background:yellow;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 
 #car {
     position: absolute;
     background-color: red;
     border-color: black;
+    border-radius: 10px;
     height: 40px;
-    width: 20px;
+    width: 30px;
     position:absolute;
     left: 330px; 
     bottom: 150px;
