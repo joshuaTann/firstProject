@@ -1,3 +1,9 @@
+document.getElementById("startbutton").addEventListener("click", () => {
+    document.getElementById("startscreen").remove()
+    playGame();
+})
+
+const playGame = () => {
 
 //making the obstacles
 let generateobstacle = setInterval(() => {
@@ -28,10 +34,9 @@ let moveobstacle = setInterval(() => {
 //increase it by 5px every 25 milliseconds          
             obstacle.style.top = obstacletop + 2 + "px";
             //if the obstacle touches the bottom then end the game
-            if(obstacletop > 650) {
-                alert("Game Over. Refresh the page to try again!")
+            if(obstacletop > 600) {
+                alert("Game Over. Press OK to try again!")
                 clearInterval(moveobstacle);
-                obstacles.remove()
                 window.location.reload();
             }
         }  
@@ -76,7 +81,7 @@ if (e.key === "w") {
             bulletbound.top <= obstaclebound.top &&
             bulletbound.bottom <= obstaclebound.bottom
           ) {
-            obstacle.parentElement.removeChild(obstacle); //Just removing that particular rock;
+            obstacle.parentElement.removeChild(obstacle); //Just removing that particular obstacle;
             //Scoreboard
             document.getElementById("score").innerHTML =
               parseInt(document.getElementById("score").innerHTML) + 1;
@@ -88,8 +93,9 @@ if (e.key === "w") {
       );
 
       //Stops the bullet from moving outside the gamebox
-      if (bulletbottom >= 625) {
+      if (bulletbottom >= 575) {
         clearInterval(movebullet);
+        bullet.style.backgroundColor = "black"
       }
 
       bullet.style.left = left + "px"; //bullet should always be placed at the top of my jet..!
@@ -98,7 +104,7 @@ if (e.key === "w") {
   }
 })
 
-
+}
 
 
 

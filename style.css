@@ -4,59 +4,96 @@ body {
 }
 
 #score {
+    position: absolute;
     color: white;
-    font-size: 40px;
+    font-size: 20px;
+    left: 20px;
 }
 
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: monospace;
     text-align: center;
+    color: yellow;
 }
 
 #thetop {
     height: 30px;
-    background-color: yellow;
+    background-color: black;
+    top: 0px
 }
 
 #display {
     position: relative;
-    background-color: gray;
-    height: 650px;
+    background-image: url("https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80");
+    background-size: cover;
+    height: 600px;
     width: 670px;
     margin: 0 auto;
 }
 
+#startscreen {
+    position: relative;
+    background-color: black;
+    color: yellow;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    margin: 0 auto;
+    top: 150px;
+    height: 150px;
+    width: 200px;
+    border-radius: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 10px;
+}
+
+#startbutton {
+    position: relative;
+    height: 100px;
+    font-size: 30px;
+    border-radius: 20px;
+    top: 15px;
+}
+
+#score2 {
+    position: relative;
+    font-size: 30px;
+    text-align: center;
+    top: 10px;
+}
+
 .obstacles {
     position: absolute;
-    height: 45px;
+    height: 40px;
     width: 70px;
-    background-color: orange;
-    border-radius: 10px;
+    background-image: url("normal.png");
+    background-size: contain;
+    background-repeat: no-repeat;
     top: 0;
     left: 0;
 }
 
 .bullets {
     position: absolute;
-    bottom: 100px;
-    left: 51%;
+    bottom: 50px;
+    /* left: 50%; */
     width: 2px;
     height: 20px;
     background:yellow;
-    background-size: contain;
-    background-repeat: no-repeat;
   }
 
 #car {
     position: absolute;
-    background-color: red;
-    border-color: black;
-    border-radius: 10px;
+    background-color: black;
+    background: transparent;
+    background-image: url("cartoontank.png");
+    background-size: contain;
+    background-repeat: no-repeat;
     height: 40px;
-    width: 30px;
+    width: 40px;
     position:absolute;
     left: 330px; 
-    bottom: 50px;
+    bottom: -30px;
 }
 
 .directionleft {
@@ -77,6 +114,6 @@ h1 {
     position: absolute;
     height: 50px;
     width: 670px;
-    background-color:orange;
-    top: 650px;
+    background: linear-gradient(brown, grey);
+    top: 600px;
 }
