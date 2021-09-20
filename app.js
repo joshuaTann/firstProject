@@ -34,7 +34,8 @@ let moveobstacle = setInterval(() => {
             let obstacletop = parseInt(window.getComputedStyle(obstacle).getPropertyValue("top"));
 //increase it by 5px every 25 milliseconds          
             obstacle.style.top = obstacletop + 1 + "px";
-            if(obstacletop > 670) {
+            //if the obstacle touches the bottom then end the game
+            if(obstacletop > 650) {
                 alert("Game Over. Refresh the page to try again!")
                 clearInterval(moveobstacle);
                 obstacles.remove()
@@ -94,7 +95,7 @@ if (e.key == "w") {
       );
 
       //Stops the bullet from moving outside the gamebox
-      if (bulletbottom >= 740) {
+      if (bulletbottom >= 625) {
         clearInterval(movebullet);
       }
 
