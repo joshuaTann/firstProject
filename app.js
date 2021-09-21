@@ -1,7 +1,20 @@
+let difficulty = document.getElementById("choosedifficulty")
+
+
 document.getElementById("startbutton").addEventListener("click", () => {
+    if (difficulty.value === "Choose Difficulty:") {
+        alert("Please choose a difficulty before starting!")
+    } else {
     document.getElementById("startscreen").remove()
-    easyGame();
     movethetank();
+    if(difficulty.value === "Easy") {
+        runGame(easy);
+    } else if (difficulty.value === "Medium") {
+        runGame(medium);
+    } else if (difficulty.value === "Hard") {
+        runGame(hard);
+    } 
+    }
 })
 
 const restart = () => {
@@ -11,8 +24,13 @@ const restart = () => {
     }
     document.getElementById("score").innerHTML = 0
    document.getElementById("endgamemsg").remove();
-    easyGame();
-    movethetank();
+   if(difficulty.value == "Easy") {
+    runGame(easy);
+} else if (difficulty.value == "Medium") {
+    runGame(medium);
+} else if (difficulty.value == "Hard") {
+    runGame(hard);
+};
 }
 
 const movethetank = () => {
@@ -35,7 +53,7 @@ if (e.key === "w") {
     let bullet = document.createElement("div");
     bullet.classList.add("bullets");
     display.appendChild(bullet);
-
+    
     let movebullet = setInterval(() => {
       let aliens = document.getElementsByClassName("aliens");
 
@@ -72,7 +90,7 @@ if (e.key === "w") {
         bullet.parentElement.removeChild(bullet);
       }
 
-      bullet.style.left = left + "px"; //bullet should always be placed at the top of my jet..!
+      bullet.style.left = left + 18 + "px"; //bullet should always be placed at the top of my jet..!
       bullet.style.bottom = bulletbottom + 3 + "px";
     });
   }
@@ -80,10 +98,13 @@ if (e.key === "w") {
 
 }
 
+//Run the Game
+let easy = 1
+let medium = 2
+let hard = 3
 
-const easyGame = () => {
-
-    //making the aliens
+const runGame = (speed) => {
+    
     let generatealien = setInterval(() => {
     //set a variable to create a div
         let alien = document.createElement("div");
@@ -96,7 +117,7 @@ const easyGame = () => {
         display.appendChild(alien);
     
     //object spawn at an interval of one second
-    }, 1000);
+    }, 1500);
     
     //moving the obstacles
     let movealien = setInterval(() => {
@@ -110,7 +131,7 @@ const easyGame = () => {
     //take the current "top" value of the object
                 let alientop = parseInt(window.getComputedStyle(alien).getPropertyValue("top"));
     //increase it by 5px every 25 milliseconds          
-                alien.style.top = alientop + 2 + "px";
+                alien.style.top = alientop + speed + "px";
                 //if the obstacle touches the bottom then end the game
                 if(alientop > 600) {
                     //stop making more aliens and moving them
@@ -139,86 +160,5 @@ const easyGame = () => {
             }  
         }
     }, 20);
-    }
+}//end of rungame is here
     
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $(() => {
-// //score
-// let $num = 0
-// const score = setInterval(() => {
-//     $('#score').text($num);
-//     $num++;
-//     }, 1000);
-
-
-
-
-
-// const generateobstacle = () => {
-//     setInterval(() => {
-//     let $obstacle = $('<div>').attr('class', 'obstacles');
-//     //get the left of the obstacle to position it
-    
-//     $obstacle.css('left', `${Math.floor(Math.random() * 600)}px`)
-//     $('#display').append($obstacle);
-// }, 2000) 
-// }
-
-// const moveobstacle = () => {
-//     setInterval(() => {
-//         let $obstacles = $(".obstacles");
-//         if($obstacles != undefined) {
-//             for(let i = 0; i < $obstacles.length; i++) {
-//                 let $obstacle = $obstacles.eq(i);
-//                 let $obstacletop = $obstacle.css(`top`);
-                
-//                 $obstacle.css(`top`, `${$obstacletop + 1}px`);
-//             }
-//         }
-
-//     }, 25);
-// }
-// generateobstacle()
-// moveobstacle()
-// });
-
-
