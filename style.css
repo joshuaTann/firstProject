@@ -55,14 +55,14 @@ h1 {
     top: 15px;
 }
 
-#score2 {
+#startmessage {
     position: relative;
     font-size: 30px;
     text-align: center;
     top: 10px;
 }
 
-.obstacles {
+.aliens {
     position: absolute;
     height: 40px;
     width: 70px;
@@ -76,7 +76,6 @@ h1 {
 .bullets {
     position: absolute;
     bottom: 50px;
-    /* left: 50%; */
     width: 2px;
     height: 20px;
     background:yellow;
@@ -96,20 +95,6 @@ h1 {
     bottom: -30px;
 }
 
-.directionleft {
-    position: absolute;
-    top: 700px;
-    left: 300px;
-    padding: 10px
-}
-
-.directionright {
-    position: absolute;
-    top: 700px;
-    left: 350px;
-    padding: 10px
-}
-
 #theend {
     position: absolute;
     height: 50px;
@@ -117,3 +102,26 @@ h1 {
     background: linear-gradient(brown, grey);
     top: 600px;
 }
+
+#endgamemsg {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    height: 60px;
+    width: 100px;
+    background-color: red;
+    background-size: contain;
+    padding: 10px;
+    border-style: solid;
+    border-width: 10px;
+    border-radius: 30px;
+    border-color: darkgray;
+    color: white
+}
+
+.retrybutton {
+    position: absolute;
+    top: 50px;
+    left: 25px;
+}
+

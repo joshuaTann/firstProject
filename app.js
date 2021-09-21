@@ -1,48 +1,21 @@
 document.getElementById("startbutton").addEventListener("click", () => {
     document.getElementById("startscreen").remove()
-    playGame();
+    easyGame();
+    movethetank();
 })
 
-const playGame = () => {
-
-//making the obstacles
-let generateobstacle = setInterval(() => {
-//set a variable to create a div
-    let obstacle = document.createElement("div");
-//give the div a class of "obstacles"
-    obstacle.classList.add("obstacles");
-//getting the left value to randomly generate the objects across the top of the screen
-    // let obstacleleft = parseInt(window.getComputedStyle(obstacle).getPropertyValue("left"));
-    obstacle.style.left = Math.floor(Math.random() * 600) + "px";
-
-    display.appendChild(obstacle);
-
-//object spawn at an interval of one second
-}, 1000);
-
-//moving the obstacles
-let moveobstacle = setInterval(() => {
-//capturing the class "obstacles in a variable"
-    let obstacles = document.getElementsByClassName("obstacles");
-//if obstacles are not undefined i.e. they exist,
-    if(obstacles != undefined){
-//for each obstacle in the class obstacles
-        for(let i = 0; i < obstacles.length; i++){
-            let obstacle = obstacles[i];
-//take the current "top" value of the object
-            let obstacletop = parseInt(window.getComputedStyle(obstacle).getPropertyValue("top"));
-//increase it by 5px every 25 milliseconds          
-            obstacle.style.top = obstacletop + 2 + "px";
-            //if the obstacle touches the bottom then end the game
-            if(obstacletop > 600) {
-                alert("Game Over. Press OK to try again!")
-                clearInterval(moveobstacle);
-                window.location.reload();
-            }
-        }  
+const restart = () => {
+    let aliens = document.getElementsByClassName("aliens")
+    while(aliens[0]) {
+        aliens[0].parentElement.removeChild(aliens[0])
     }
-}, 20);
+    document.getElementById("score").innerHTML = 0
+   document.getElementById("endgamemsg").remove();
+    easyGame();
+    movethetank();
+}
 
+const movethetank = () => {
 //making the car move
 let car = document.getElementById("car")
 let display = document.getElementById("display")
@@ -64,24 +37,25 @@ if (e.key === "w") {
     display.appendChild(bullet);
 
     let movebullet = setInterval(() => {
-      let obstacles = document.getElementsByClassName("obstacles");
+      let aliens = document.getElementsByClassName("aliens");
 
-      for (let i = 0; i < obstacles.length; i++) {
-        let obstacle = obstacles[i];
-        if (obstacles != undefined) {
-          let obstaclebound = obstacle.getBoundingClientRect();
+      for (let i = 0; i < aliens.length; i++) {
+        let alien = aliens[i];
+        if (aliens != undefined) {
+          let alienbound = alien.getBoundingClientRect();
           let bulletbound = bullet.getBoundingClientRect();
 
           //Condition to check whether the rock/alien and the bullet are at the same position..!
           //If so,then we have to destroy that rock
 
           if (
-            bulletbound.left >= obstaclebound.left &&
-            bulletbound.right <= obstaclebound.right &&
-            bulletbound.top <= obstaclebound.top &&
-            bulletbound.bottom <= obstaclebound.bottom
+            bulletbound.left >= alienbound.left &&
+            bulletbound.right <= alienbound.right &&
+            bulletbound.top <= alienbound.top &&
+            bulletbound.bottom <= alienbound.bottom
           ) {
-            obstacle.parentElement.removeChild(obstacle); //Just removing that particular obstacle;
+            alien.parentElement.removeChild(alien); //Just removing that particular alien
+            bullet.parentElement.removeChild(bullet); //remove the bullet that hit
             //Scoreboard
             document.getElementById("score").innerHTML =
               parseInt(document.getElementById("score").innerHTML) + 1;
@@ -95,7 +69,7 @@ if (e.key === "w") {
       //Stops the bullet from moving outside the gamebox
       if (bulletbottom >= 575) {
         clearInterval(movebullet);
-        bullet.style.backgroundColor = "black"
+        bullet.parentElement.removeChild(bullet);
       }
 
       bullet.style.left = left + "px"; //bullet should always be placed at the top of my jet..!
@@ -105,6 +79,69 @@ if (e.key === "w") {
 })
 
 }
+
+
+const easyGame = () => {
+
+    //making the aliens
+    let generatealien = setInterval(() => {
+    //set a variable to create a div
+        let alien = document.createElement("div");
+    //give the div a class of "aliens"
+        alien.classList.add("aliens");
+    //getting the left value to randomly generate the objects across the top of the screen
+        // let obstacleleft = parseInt(window.getComputedStyle(obstacle).getPropertyValue("left"));
+        alien.style.left = Math.floor(Math.random() * 600) + "px";
+    
+        display.appendChild(alien);
+    
+    //object spawn at an interval of one second
+    }, 1000);
+    
+    //moving the obstacles
+    let movealien = setInterval(() => {
+    //capturing the class "obstacles in a variable"
+        let aliens = document.getElementsByClassName("aliens");
+    //if obstacles are not undefined i.e. they exist,
+        if(aliens != undefined){
+    //for each obstacle in the class obstacles
+            for(let i = 0; i < aliens.length; i++){
+                let alien = aliens[i];
+    //take the current "top" value of the object
+                let alientop = parseInt(window.getComputedStyle(alien).getPropertyValue("top"));
+    //increase it by 5px every 25 milliseconds          
+                alien.style.top = alientop + 2 + "px";
+                //if the obstacle touches the bottom then end the game
+                if(alientop > 600) {
+                    //stop making more aliens and moving them
+                    clearInterval(movealien);
+                    clearInterval(generatealien);
+
+                    //create a div containing a message of your score
+                    let endgamemsg = document.createElement("div")
+                    endgamemsg.setAttribute("id", "endgamemsg");
+                    endgamemsg.innerHTML = `Your score was ${document.getElementById("score").innerHTML}.`;
+                    display.appendChild(endgamemsg);
+
+                    //stick a retry button into the div
+                    let retrybutton = document.createElement("button");
+                    retrybutton.classList.add("retrybutton");
+                    retrybutton.innerHTML = "RETRY?"
+                    endgamemsg.appendChild(retrybutton);
+
+                    //restarting the game on retry
+                    retrybutton.addEventListener("click", () => {
+                        restart();
+                    })
+
+                    // window.location.reload();
+                }
+            }  
+        }
+    }, 20);
+    }
+    
+    
 
 
 
