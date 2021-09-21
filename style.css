@@ -73,6 +73,18 @@ h1 {
     left: 0;
 }
 
+.aliens2 {
+    position: absolute;
+    height: 40px;
+    width: 70px;
+    background-image: url("alien2.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    color: red
+}
+
 .bullets {
     position: absolute;
     bottom: 10px;

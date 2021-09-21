@@ -63,8 +63,8 @@ if (e.key === "w") {
           let alienbound = alien.getBoundingClientRect();
           let bulletbound = bullet.getBoundingClientRect();
 
-          //Condition to check whether the rock/alien and the bullet are at the same position..!
-          //If so,then we have to destroy that rock
+          //Condition to check whether the alien and the bullet are at the same position..!
+          //If so,then we have to destroy that alien
 
           if (
             bulletbound.left >= alienbound.left &&
@@ -154,11 +154,9 @@ const runGame = (speed) => {
                     retrybutton.addEventListener("click", () => {
                         restart();
                     })
-
-                    // window.location.reload();
                 }
             }  
         }
     }, 20);
-}//end of rungame is here
+}
     
