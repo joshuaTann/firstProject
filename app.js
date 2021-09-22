@@ -8,11 +8,11 @@ document.getElementById("startbutton").addEventListener("click", () => {
     document.getElementById("startscreen").remove()
     movethetank();
     if(difficulty.value === "Easy") {
-        runGame(easy);
+        runGame(EASY);
     } else if (difficulty.value === "Medium") {
-        runGame(medium);
+        runGame(MEDIUM);
     } else if (difficulty.value === "Hard") {
-        runGame(hard);
+        runGame(HARD);
     } 
     }
 })
@@ -25,11 +25,11 @@ const restart = () => {
     document.getElementById("score").innerHTML = 0
    document.getElementById("endgamemsg").remove();
    if(difficulty.value == "Easy") {
-    runGame(easy);
+    runGame(EASY);
 } else if (difficulty.value == "Medium") {
-    runGame(medium);
+    runGame(MEDIUM);
 } else if (difficulty.value == "Hard") {
-    runGame(hard);
+    runGame(HARD);
 };
 }
 
@@ -43,9 +43,9 @@ window.addEventListener("keydown", (e) => {
     //getting left value of the car so we can move it
     let left = parseInt(window.getComputedStyle(car).getPropertyValue("left"))
     if(e.key === "a" && left > 10) {
-        car.style.left = left - 30 + "px";
+        car.style.left = left - 20 + "px";
     } else if(e.key === "d" && left <= 610) {
-        car.style.left = left + 30 + "px";
+        car.style.left = left + 20 + "px";
     }
 
 //bullets
@@ -99,25 +99,37 @@ if (e.key === "w") {
 }
 
 //Run the Game
-let easy = 1
-let medium = 2
-let hard = 3
+const EASY = 1
+const MEDIUM = 2
+const HARD = 3
 
 const runGame = (speed) => {
     
     let generatealien = setInterval(() => {
     //set a variable to create a div
         let alien = document.createElement("div");
+      
     //give the div a class of "aliens"
         alien.classList.add("aliens");
+       
     //getting the left value to randomly generate the objects across the top of the screen
         // let obstacleleft = parseInt(window.getComputedStyle(obstacle).getPropertyValue("left"));
         alien.style.left = Math.floor(Math.random() * 600) + "px";
-    
-        display.appendChild(alien);
-    
-    //object spawn at an interval of one second
-    }, 1500);
+        display.appendChild(alien) 
+    //object spawn at an interval of two second
+    }, 2000);
+
+    //have another variable for second class of aliens
+    let generatealien2 = setInterval(() => {
+        let alien2 = document.createElement("div");
+        alien2.innerHTML = 100
+
+        alien2.classList.add("aliens");
+        alien2.classList.add("aliens2")
+
+        alien2.style.left = Math.floor(Math.random() * 600) + "px";
+        display.appendChild(alien2)
+    }, 10000)
     
     //moving the obstacles
     let movealien = setInterval(() => {
@@ -137,6 +149,7 @@ const runGame = (speed) => {
                     //stop making more aliens and moving them
                     clearInterval(movealien);
                     clearInterval(generatealien);
+                    clearInterval(generatealien2);
 
                     //create a div containing a message of your score
                     let endgamemsg = document.createElement("div")
