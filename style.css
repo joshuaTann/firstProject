@@ -4,9 +4,13 @@ body {
 }
 
 #score {
+    height: 40px;
+    width: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
     position: absolute;
     color: white;
-    font-size: 20px;
+    font-size: 30px;
     left: 20px;
 }
 
@@ -64,8 +68,8 @@ h1 {
 
 .aliens {
     position: absolute;
-    height: 40px;
-    width: 70px;
+    height: 60px;
+    width: 60px;
     background-image: url("normal.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -75,8 +79,8 @@ h1 {
 
 .aliens2 {
     position: absolute;
-    height: 40px;
-    width: 70px;
+    height: 90px;
+    width: 90px;
     background-image: url("alien2.png");
     background-size: contain;
     background-repeat: no-repeat;

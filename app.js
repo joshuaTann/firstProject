@@ -71,12 +71,33 @@ if (e.key === "w") {
             bulletbound.right <= alienbound.right &&
             bulletbound.top <= alienbound.top &&
             bulletbound.bottom <= alienbound.bottom
-          ) {
-            alien.parentElement.removeChild(alien); //Just removing that particular alien
-            bullet.parentElement.removeChild(bullet); //remove the bullet that hit
+          ) { 
+              if(alien.value !== undefined && alien.value > 25) {
+              alien.value = alien.value - 25;
+              alien.innerHTML = alien.value;
+              bullet.parentElement.removeChild(bullet); 
+            } else if(alien.value === undefined || alien.value <= 25) {
+                bullet.parentElement.removeChild(bullet); //remove the bullet that hit
+                alien.innerHTML = ""
+                alien.style.backgroundImage = "url('explosion5.gif')"
+                setTimeout(() => {
+                    alien.parentElement.removeChild(alien); //Just removing that particular alien
+                }, 300)
             //Scoreboard
-            document.getElementById("score").innerHTML =
-              parseInt(document.getElementById("score").innerHTML) + 1;
+            if(alien.value !== undefined) {
+                let currentscore = document.getElementById("score")
+                currentscore.innerHTML = parseInt(document.getElementById("score").innerHTML) + 5;
+                currentscore.style.color = "rgba(0, 0, 0, 0)";
+                currentscore.style.backgroundImage = "url('plus5.gif')";
+                setTimeout (() => {
+                    currentscore.style.color = "white";
+                    currentscore.style.backgroundImage = ""
+                }, 1000)
+                } else {
+                    document.getElementById("score").innerHTML =
+                parseInt(document.getElementById("score").innerHTML) + 1;
+                }
+            }   
           }
         }
       }
@@ -104,7 +125,6 @@ const MEDIUM = 2
 const HARD = 3
 
 const runGame = (speed) => {
-    
     let generatealien = setInterval(() => {
     //set a variable to create a div
         let alien = document.createElement("div");
@@ -114,7 +134,7 @@ const runGame = (speed) => {
        
     //getting the left value to randomly generate the objects across the top of the screen
         // let obstacleleft = parseInt(window.getComputedStyle(obstacle).getPropertyValue("left"));
-        alien.style.left = Math.floor(Math.random() * 600) + "px";
+        alien.style.left = Math.floor(Math.random() * 580) + "px";
         display.appendChild(alien) 
     //object spawn at an interval of two second
     }, 2000);
@@ -122,12 +142,13 @@ const runGame = (speed) => {
     //have another variable for second class of aliens
     let generatealien2 = setInterval(() => {
         let alien2 = document.createElement("div");
-        alien2.innerHTML = 100
+        alien2.value = 100
+        alien2.innerHTML = alien2.value
 
         alien2.classList.add("aliens");
         alien2.classList.add("aliens2")
 
-        alien2.style.left = Math.floor(Math.random() * 600) + "px";
+        alien2.style.left = Math.floor(Math.random() * 580) + "px";
         display.appendChild(alien2)
     }, 10000)
     
@@ -145,7 +166,7 @@ const runGame = (speed) => {
     //increase it by 5px every 25 milliseconds          
                 alien.style.top = alientop + speed + "px";
                 //if the obstacle touches the bottom then end the game
-                if(alientop > 600) {
+                if(alientop > 585) {
                     //stop making more aliens and moving them
                     clearInterval(movealien);
                     clearInterval(generatealien);
