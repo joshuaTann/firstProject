@@ -48,6 +48,7 @@ let display = document.getElementById("display")
 
 //listening for keypresses
 window.addEventListener("keydown", (e) => {
+    
     //getting left value of the car so we can move it
     let left = parseInt(window.getComputedStyle(car).getPropertyValue("left"))
     if(e.key === "a" && left > 10) {
@@ -55,6 +56,7 @@ window.addEventListener("keydown", (e) => {
     } else if(e.key === "d" && left <= 610) {
         car.style.left = left + 20 + "px";
     }
+
 
 //bullets
 if (e.key === "w") {
@@ -119,7 +121,7 @@ if (e.key === "w") {
         bullet.parentElement.removeChild(bullet);
       }
 
-      bullet.style.left = left + 18 + "px"; //bullet should always be placed at the top of my jet..!
+      bullet.style.left = left + 20 + "px"; //bullet should always be placed at the top of my jet..!
       bullet.style.bottom = bulletbottom + 3 + "px";
     });
   }
