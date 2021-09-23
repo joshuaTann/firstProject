@@ -111,7 +111,11 @@ h1 {
     width: 40px;
     position:absolute;
     left: 320px; 
-    bottom: -45px;
+    bottom: -40px;
+    border-style: solid;
+    border-radius: 50px;
+    border-color: cyan;
+    border-bottom: hidden;
 }
 
 #theend {
@@ -131,26 +135,36 @@ h1 {
     background-color: greenyellow;
 }
 
+.healthgreen::-webkit-progress-value { background: rgb(2, 245, 2) }
+
+.healthyellow::-webkit-progress-value { background:yellow; }
+
+.healthred::-webkit-progress-value { background: red; }
+
 #endgamemsg {
     position: absolute;
-    top: 50%;
-    left: 40%;
-    height: 60px;
-    width: 100px;
+    top: 40%;
+    left: 30%;
+    height: 150px;
+    width: 250px;
     background-color: red;
     background-size: contain;
     padding: 10px;
     border-style: solid;
     border-width: 10px;
     border-radius: 30px;
-    border-color: darkgray;
-    color: white
+    border-color: maroon;
+    color: white;
+    font-size: 40px;
+    text-align: center;
 }
 
 .retrybutton {
     position: absolute;
-    top: 50px;
-    left: 25px;
+    top: 65%;
+    left: 25%;
+    font-size: 30px;
+    border-radius: 10px;
 }
 
 #choosedifficulty {
@@ -163,10 +177,15 @@ h1 {
     border-radius: 10px;
     border-width: 5px;
 }
+
+.header{
+    font-size: 30px;
+    color: yellow
+}
 h5 {
     position: relative;
     left: 1100px;
-    top: -500px;
+    top: -600px;
     font-size: 20px;
     font-family: monospace;
     color: white;

@@ -1,4 +1,5 @@
 let difficulty = document.getElementById("choosedifficulty")
+let health = document.getElementById("health")
 
 
 document.getElementById("startbutton").addEventListener("click", () => {
@@ -23,7 +24,13 @@ const restart = () => {
         aliens[0].parentElement.removeChild(aliens[0])
     }
     document.getElementById("score").innerHTML = 0
-    document.getElementById("health").value = 100
+   health.value = 100
+    health.classList.remove("healthred");
+    health.classList.add("healthgreen");
+    car.style.borderRadius = `${50}px`;
+    car.style.borderStyle = "solid";
+    car.style.borderBottom = "hidden";
+    
    document.getElementById("endgamemsg").remove();
    if(difficulty.value == "Easy") {
     runGame(EASY);
@@ -166,6 +173,23 @@ const runGame = (speed) => {
                 let alientop = parseInt(window.getComputedStyle(alien).getPropertyValue("top"));
     //increase it by 5px every 25 milliseconds          
                 alien.style.top = alientop + speed + "px";
+
+                //Healthbar
+                let health = document.getElementById("health");
+                    if(health.value <= 70){
+                        health.classList.remove('healthgreen');
+                        health.classList.add("healthyellow");
+                    } 
+                    if(health.value < 30) {
+                        health.classList.remove("healthyellow");
+                        health.classList.add("healthred");
+                    }
+
+                    //Shield
+                    if(health.value === 0){
+                        car.style.borderRadius = 0;
+                        car.style.borderStyle = "hidden"
+                    }
                 //if the obstacle touches the bottom then end the game
                 if(alientop > 585) {
                     if(health.value > 0){
@@ -180,7 +204,7 @@ const runGame = (speed) => {
                     //create a div containing a message of your score
                     let endgamemsg = document.createElement("div")
                     endgamemsg.setAttribute("id", "endgamemsg");
-                    endgamemsg.innerHTML = `Your score was ${document.getElementById("score").innerHTML}.`;
+                    endgamemsg.innerHTML = `Your score was <strong>${document.getElementById("score").innerHTML}</strong>`;
                     display.appendChild(endgamemsg);
 
                     //stick a retry button into the div
