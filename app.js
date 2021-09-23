@@ -52,9 +52,9 @@ window.addEventListener("keydown", (e) => {
     //getting left value of the car so we can move it
     let left = parseInt(window.getComputedStyle(car).getPropertyValue("left"))
     if(e.key === "a" && left > 10) {
-        car.style.left = left - 20 + "px";
+        car.style.left = left - 10 + "px";
     } else if(e.key === "d" && left <= 610) {
-        car.style.left = left + 20 + "px";
+        car.style.left = left + 10 + "px";
     }
 
 
