@@ -124,11 +124,23 @@ h1 {
     left: -3px;
 }
 
-#health {
+progress {
     position: absolute;
     top: 640px;
     width: 670px;
-    background-color: greenyellow;
+    background-color: rgb(2, 255, 2);
+}
+
+.healthgreen::-webkit-progress-value {
+    background-color: rgb(2, 255, 2);
+}
+
+.healthyellow::-webkit-progress-value {
+    background-color: yellow;
+}
+
+.healthred::-webkit-progress-value {
+    background-color: rgb(255, 2, 23);
 }
 
 #endgamemsg {

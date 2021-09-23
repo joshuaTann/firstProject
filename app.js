@@ -34,6 +34,7 @@ const restart = () => {
 };
 }
 
+
 const movethetank = () => {
 //making the car move
 let car = document.getElementById("car")
@@ -166,6 +167,18 @@ const runGame = (speed) => {
                 let alientop = parseInt(window.getComputedStyle(alien).getPropertyValue("top"));
     //increase it by 5px every 25 milliseconds          
                 alien.style.top = alientop + speed + "px";
+
+                //Healthbar colour
+                let health = document.getElementById("health");
+                    if(health.value <= 70){
+                        health.classList.remove('healthgreen');
+                        health.classList.add("healthyellow");
+                        } 
+                    if(health.value <= 30) {
+                        health.classList.remove("healthyellow");
+                        health.classList.add("healthred");
+                        }
+                        
                 //if the obstacle touches the bottom then end the game
                 if(alientop > 585) {
                     if(health.value > 0){
