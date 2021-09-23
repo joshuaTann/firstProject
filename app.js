@@ -23,6 +23,7 @@ const restart = () => {
         aliens[0].parentElement.removeChild(aliens[0])
     }
     document.getElementById("score").innerHTML = 0
+    document.getElementById("health").value = 100
    document.getElementById("endgamemsg").remove();
    if(difficulty.value == "Easy") {
     runGame(EASY);
@@ -167,6 +168,10 @@ const runGame = (speed) => {
                 alien.style.top = alientop + speed + "px";
                 //if the obstacle touches the bottom then end the game
                 if(alientop > 585) {
+                    if(health.value > 0){
+                        alien.parentElement.removeChild(alien);
+                        health.value = health.value - 20;
+                    } else if(health.value === 0){
                     //stop making more aliens and moving them
                     clearInterval(movealien);
                     clearInterval(generatealien);
@@ -188,6 +193,7 @@ const runGame = (speed) => {
                     retrybutton.addEventListener("click", () => {
                         restart();
                     })
+                }   
                 }
             }  
         }
